@@ -1,0 +1,27 @@
+2018-04-30 16:51:35,857 INFO 127.0.0.1 - - [30/Apr/2018 16:51:35] "GET / HTTP/1.1" 200 -
+2018-04-30 16:51:38,311 INFO 127.0.0.1 - - [30/Apr/2018 16:51:38] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 16:51:41,466 INFO 127.0.0.1 - - [30/Apr/2018 16:51:41] "POST /buscarLibroPorNombre HTTP/1.1" 500 -
+2018-04-30 16:51:41,644 INFO 127.0.0.1 - - [30/Apr/2018 16:51:41] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 16:59:45,103 ERROR Hubo un error en welcome
+Traceback (most recent call last):
+  File "/home/andres/Documentos/python_WorkSpace/exampleFlask/logger.py", line 17, in wrapper
+    return func(*args, **kwargs)
+TypeError: welcome() takes no arguments (1 given)
+2018-04-30 17:00:03,987 INFO 127.0.0.1 - - [30/Apr/2018 17:00:03] "GET / HTTP/1.1" 200 -
+2018-04-30 17:00:04,380 INFO 127.0.0.1 - - [30/Apr/2018 17:00:04] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 17:00:07,736 ERROR Hubo un error en buscarLibroPorNombre
+Traceback (most recent call last):
+  File "/home/andres/Documentos/python_WorkSpace/exampleFlask/logger.py", line 17, in wrapper
+    return func(*args, **kwargs)
+  File "App.py", line 28, in buscarLibroPorNombre
+    div=1/0
+ZeroDivisionError: integer division or modulo by zero
+2018-04-30 17:00:07,742 INFO 127.0.0.1 - - [30/Apr/2018 17:00:07] "POST /buscarLibroPorNombre HTTP/1.1" 500 -
+2018-04-30 17:00:07,985 INFO 127.0.0.1 - - [30/Apr/2018 17:00:07] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 17:02:18,842 INFO 127.0.0.1 - - [30/Apr/2018 17:02:18] "GET / HTTP/1.1" 200 -
+2018-04-30 17:02:19,230 INFO 127.0.0.1 - - [30/Apr/2018 17:02:19] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 17:02:24,081 INFO 127.0.0.1 - - [30/Apr/2018 17:02:24] "POST /buscarLibroPorNombre HTTP/1.1" 200 -
+2018-04-30 17:02:24,162 INFO 127.0.0.1 - - [30/Apr/2018 17:02:24] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 17:02:26,692 INFO 127.0.0.1 - - [30/Apr/2018 17:02:26] "GET /favicon.ico HTTP/1.1" 404 -
+2018-04-30 17:02:29,368 INFO 127.0.0.1 - - [30/Apr/2018 17:02:29] "POST /buscarLibroPorNombre HTTP/1.1" 200 -
+2018-04-30 17:02:29,505 INFO 127.0.0.1 - - [30/Apr/2018 17:02:29] "GET /favicon.ico HTTP/1.1" 404 -
