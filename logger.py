@@ -9,7 +9,6 @@ def create():
     return logger
 
 def exception(func):
-
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         logger = create()
