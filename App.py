@@ -35,11 +35,15 @@ def buscarLibroPorNombre():
         data={"nombre":registro["author"]}
         requesti = urllib2.Request("http://localhost:5001/buscarAutor")
         requesti.add_header("Content-type","Application/json")
-        response = urllib2.urlopen(requesti, json.dumps(data))
-        responseJson=json.loads(response.read())
-        if( responseJson is not None):
-            libro["Pais autor"]=responseJson["pais"]
-            libro["Anno de nacimiento:"]=responseJson["anno nascimineto"]
+        try:
+            response = urllib2.urlopen(requesti, json.dumps(data))
+            responseJson=json.loads(response.read())
+            if( responseJson is not None):
+                libro["Pais autor"]=responseJson["pais"]
+                libro["Anno de nacimiento:"]=responseJson["anno nascimineto"]
+        except Exception as e:
+            pass
+
     else:
         libro={"titulo":"No encontrado"}
 
@@ -58,7 +62,7 @@ def buscarLibrosPorPrecio():
     db = coneccion.test
     #encontrar
     registro = db.registros.find({'Precio':{ '$gt' : precio1, '$lt' : precio2 }}).sort('Precio')
-    coneccion=""
+    del(coneccion)
     lista=[]
     for aux in registro:
         lista.append({"titulo":aux["title"],"autor":aux["author"],"Precio":aux["Precio"]})
@@ -72,6 +76,7 @@ def listarTiposDeLibros():
     coneccion= MongoClient('127.0.0.1',27017)
     collection = coneccion.test
     registros = collection.registros.distinct('Tipo')
+    del(coneccion)
     for aux in registros:
         lista.append(aux)
 
