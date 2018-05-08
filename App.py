@@ -41,7 +41,7 @@ def buscarLibroPorNombre():
             libro["Pais autor"]=responseJson["pais"]
             libro["Anno de nacimiento:"]=responseJson["anno nascimineto"]
     else:
-        libro="No encontrado"
+        libro={"titulo":"No encontrado"}
 
     return json.dumps(libro)
 
@@ -65,15 +65,16 @@ def buscarLibrosPorPrecio():
 
     return json.dumps(lista)
 
-@app.route("/tiposDeLibros",methods=['POST'])
+@app.route("/tiposDeLibros",methods=['GET','POST'])
 @exception
 def listarTiposDeLibros():
     lista=[]
     coneccion= MongoClient('127.0.0.1',27017)
     collection = coneccion.test
-    registros = db.registros.distinct('Tipo')
+    registros = collection.registros.distinct('Tipo')
     for aux in registros:
-        lista.append(aux['Tipo'])
+        lista.append(aux)
+
     return json.dumps(lista)
 
 
