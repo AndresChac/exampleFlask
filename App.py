@@ -2,6 +2,7 @@ from flask import Flask,request,render_template
 from pymongo import MongoClient
 import json
 from logger import exception
+import urllib2
 
 
 app = Flask(__name__)
@@ -31,6 +32,14 @@ def buscarLibroPorNombre():
     registro = db.registros.find_one({'title':nombre})
     if registro is not None :
         libro = {"titulo":registro["title"],"autor":registro["author"],"Precio":registro["Precio"]}
+        data={"nombre":registro["author"]}
+        requesti = urllib2.Request("http://localhost:5001/buscarAutor")
+        requesti.add_header("Content-type","Application/json")
+        response = urllib2.urlopen(requesti, json.dumps(data))
+        responseJson=json.loads(response.read())
+        if( responseJson is not None):
+            libro["Pais autor"]=responseJson["pais"]
+            libro["Anno de nacimiento:"]=responseJson["anno nascimineto"]
     else:
         libro="No encontrado"
 
@@ -56,18 +65,16 @@ def buscarLibrosPorPrecio():
 
     return json.dumps(lista)
 
-
+@app.route("/tiposDeLibros",methods=['POST'])
+@exception
 def listarTiposDeLibros():
-    try:
-        lista=[]
-
-        coneccion= MongoClient('127.0.0.1',27017)
-        collection = coneccion.test
-        registros = db.registros.distinct('Tipo')
-        for aux in registros:
-            lista.append({"titulo":aux["title"],"autor":aux["author"],"Precio":aux["Precio"]})
-    except Exception:
-        logger.error("Error buscando tipos de libros")
+    lista=[]
+    coneccion= MongoClient('127.0.0.1',27017)
+    collection = coneccion.test
+    registros = db.registros.distinct('Tipo')
+    for aux in registros:
+        lista.append(aux['Tipo'])
+    return json.dumps(lista)
 
 
 
