@@ -15,9 +15,7 @@ def exception(func):
         try:
             return func(*args, **kwargs)
         except Exception:
-            err = "Hubo un error en "
-            err += func.__name__
+            err = "Hubo un error en "+str(func.__name__)
             logger.exception(err)
-
             raise
     return wrapper

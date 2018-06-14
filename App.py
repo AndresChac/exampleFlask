@@ -18,6 +18,7 @@ def saludar():
     data = request.get_json()
     return "<h1>Hola "+data['nombre']+"</h1>"
 
+//endopoint
 @app.route("/buscarLibroPorNombre",methods=['POST'])
 @exception
 def buscarLibroPorNombre():
